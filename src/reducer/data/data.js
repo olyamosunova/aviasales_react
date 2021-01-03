@@ -1,9 +1,13 @@
 import {extend} from "../../utils";
+import {TRANSFER_FILTER_TITLES} from "../../const";
 
 const initialState = {
     tickets: [],
+    filteredTickets: null,
     isLoading: true,
     isError: false,
+    activeFilterType: [TRANSFER_FILTER_TITLES.ALL.count],
+    errorFilterMessage: ''
 };
 
 const ActionType = {
@@ -11,6 +15,8 @@ const ActionType = {
     FINISH_LOADING: `FINISH_LOADING`,
     CATCH_ERROR: `CATCH_ERROR`,
     CLEAR_ERROR: `CLEAR_SENDING_ERROR`,
+    FILTERED_TICKETS: `FILTERED_TICKETS`,
+    CHANGE_FILTER_TYPE: `CHANGE_FILTER_TYPE`,
 };
 
 const ActionCreator = {
@@ -38,6 +44,35 @@ const ActionCreator = {
             payload: false,
         }
     },
+    filteredTickets: (tickets, activeFilterType) => {
+
+        let filteredTickets = [];
+
+        if (!activeFilterType.length) {
+            filteredTickets = [];
+        }
+
+        filteredTickets = tickets.filter(ticket => {
+            if (activeFilterType.includes(TRANSFER_FILTER_TITLES.ALL.count)) {
+                return ticket;
+            }
+
+            if (activeFilterType.includes(ticket.segments[0].stops.length) && activeFilterType.includes(ticket.segments[1].stops.length)) {
+                return ticket;
+            }
+        });
+
+        return {
+            type: ActionType.FILTERED_TICKETS,
+            payload: filteredTickets,
+        };
+    },
+    changeFilterType: (activeFilterType) => {
+        return {
+            type: ActionType.CHANGE_FILTER_TYPE,
+            payload: activeFilterType,
+        };
+    }
 
 };
 
@@ -60,6 +95,16 @@ const reducer = (state = initialState, action) => {
                 isError: action.payload,
             });
 
+        case ActionType.FILTERED_TICKETS:
+            return extend(state, {
+                filteredTickets: action.payload,
+            });
+
+        case ActionType.CHANGE_FILTER_TYPE:
+            return extend(state, {
+                activeFilterType: action.payload,
+            });
+
         default:
             return state;
     }
@@ -71,8 +116,7 @@ const Operations = {
             .then((response) => {
                 api.get(`/tickets?searchId=${response.data.searchId}`)
                     .then((response) => {
-                        console.log(response.data);
-                        dispatch(ActionCreator.loadTickets(response.data));
+                        dispatch(ActionCreator.loadTickets(response.data.tickets));
                         dispatch(ActionCreator.finishLoading());
                     })
                     .catch(() => {

@@ -88,9 +88,9 @@
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
     margin: 5px 0; }
 @media all and (max-width: 500px) {
     .tickets__transfers-item {
@@ -126,6 +126,6 @@
     text-transform: uppercase;
     color: #A0B0B9;
     letter-spacing: 0.5px; }
-.tickets__transfers-field:last-of-type {
+.tickets__transfers-field:last-of-type:not(:first-of-type) {
     font-size: 14px;
     line-height: 19px; }

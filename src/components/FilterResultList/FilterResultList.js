@@ -1,23 +1,31 @@
-import React from "react";
+import React, {Fragment} from "react";
 import './tickets.css';
 import {connect} from "react-redux";
 import FilterResultItem from "../FilterResultItem/FilterResultItem";
-import {getTickets} from "../../reducer/data/selectors";
+import {getFilteredTickets, getTickets} from "../../reducer/data/selectors";
 
-function FilterResultList({tickets}) {
-    console.log(tickets);
+function FilterResultList({tickets, filteredTickets}) {
     return (
-        <ul className="filter__result-list tickets">
-            {[0, 1, 2].map((ticket, index) => (
-                <FilterResultItem key={index} />
-            ))}
-        </ul>
+        <Fragment>
+            {filteredTickets && filteredTickets.length === 0 ?
+                <p>По вашему запросу ничего не найдено</p> :
+
+                <ul className="filter__result-list tickets">
+                    {filteredTickets ? filteredTickets.map((ticket, index) => (
+                        <FilterResultItem ticket={ticket} key={index}/>
+                    )) : tickets.map((ticket, index) => (
+                        <FilterResultItem ticket={ticket} key={index}/>
+                    ))}
+                </ul>
+            }
+        </Fragment>
     );
 }
 
 const mapStateToProps = (state) => {
     return {
-        tickets: getTickets(state)
+        tickets: getTickets(state),
+        filteredTickets: getFilteredTickets(state)
     };
 };
 

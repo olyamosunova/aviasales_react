@@ -1,3 +1,4 @@
+import React from 'react';
 import FilterSort from "../FilterSort/FilterSort";
 import FilterResultList from "../FilterResultList/FilterResultList";
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import './filter.css';
 
 import FilterTransfer from "../FilterTransfer/FilterTransfer";
