@@ -22,7 +22,7 @@ function TransferItem({segment}) {
 
                 <span className="tickets__transfers-field">{stops.length ? `${stops.length} пересадки` : 'Без пересадок'}</span>
 
-                {stops.length ? <span className="tickets__transfers-field">{stops.map(stop => `${stop}, `)}</span> : ''}
+                {stops.length ? <span className="tickets__transfers-field">{stops.join(', ')}</span> : ''}
 
             </div>
         </li>

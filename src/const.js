@@ -26,3 +26,8 @@ export const TRANSFER_FILTER_TITLES = {
         count: 3
     },
 };
+
+export const SORT_TYPE = {
+    CHEAPER: `cheaper`,
+    FASTER: `faster`
+};

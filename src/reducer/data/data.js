@@ -1,5 +1,5 @@
 import {extend} from "../../utils";
-import {TRANSFER_FILTER_TITLES} from "../../const";
+import {TRANSFER_FILTER_TITLES, SORT_TYPE} from "../../const";
 
 const initialState = {
     tickets: [],
@@ -7,7 +7,8 @@ const initialState = {
     isLoading: true,
     isError: false,
     activeFilterType: [TRANSFER_FILTER_TITLES.ALL.count],
-    errorFilterMessage: ''
+    errorFilterMessage: '',
+    activeSortType: SORT_TYPE.CHEAPER
 };
 
 const ActionType = {
@@ -17,6 +18,8 @@ const ActionType = {
     CLEAR_ERROR: `CLEAR_SENDING_ERROR`,
     FILTERED_TICKETS: `FILTERED_TICKETS`,
     CHANGE_FILTER_TYPE: `CHANGE_FILTER_TYPE`,
+    CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
+    SET_TICKETS_BY_SORT: `SET_TICKETS_BY_SORT`
 };
 
 const ActionCreator = {
@@ -72,6 +75,20 @@ const ActionCreator = {
             type: ActionType.CHANGE_FILTER_TYPE,
             payload: activeFilterType,
         };
+    },
+    changeSortType: (activeSortType) => {
+        return {
+            type: ActionType.CHANGE_SORT_TYPE,
+            payload: activeSortType,
+        };
+    },
+    setTicketsBySort: (tickets, sortType) => {
+        const sortTickets = tickets;
+
+        return {
+            type: ActionType.SET_TICKETS_BY_SORT,
+            payload: sortTickets,
+        };
     }
 
 };
@@ -105,6 +122,17 @@ const reducer = (state = initialState, action) => {
                 activeFilterType: action.payload,
             });
 
+        case ActionType.CHANGE_SORT_TYPE:
+            return extend(state, {
+                activeSortType: action.payload,
+            });
+
+        case ActionType.SET_TICKETS_BY_SORT:
+            return extend(state, {
+                tickets: action.payload,
+            });
+
+
         default:
             return state;
     }
@@ -116,7 +144,9 @@ const Operations = {
             .then((response) => {
                 api.get(`/tickets?searchId=${response.data.searchId}`)
                     .then((response) => {
-                        dispatch(ActionCreator.loadTickets(response.data.tickets));
+                        let tickets = response.data.tickets;
+
+                        dispatch(ActionCreator.loadTickets(tickets));
                         dispatch(ActionCreator.finishLoading());
                     })
                     .catch(() => {

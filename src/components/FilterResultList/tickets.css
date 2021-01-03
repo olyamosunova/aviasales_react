@@ -118,6 +118,10 @@
         margin-bottom: 10px; } }
 .tickets__transfers-fields:not(:last-of-type) {
     margin-right: 20px; }
+@media all and (max-width: 768px) {
+    .tickets__transfers-fields:not(:last-of-type) {
+        margin-right: 0; }
+}
 
 .tickets__transfers-field {
     width: 140px;
