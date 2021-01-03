@@ -1,0 +1,41 @@
+.transfer {
+    padding: 17px 20px 10px;
+    background: #ffffff;
+    -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px; }
+
+.transfer__title {
+    margin: 0 0 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px; }
+
+.transfer__form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+@media all and (max-width: 768px) {
+    .transfer__form {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap; } }
+@media all and (max-width: 500px) {
+    .transfer__form .transfer__checkbox {
+        width: calc(50% - 10px); } }
+@media all and (max-width: 380px) {
+    .transfer__form .transfer__checkbox {
+        width: calc(100% - 10px); } }
+
+.transfer__checkbox {
+    margin: 0 -20px; }
+@media all and (max-width: 768px) {
+    .transfer__checkbox {
+        margin: 0 10px 0 0; } }
