@@ -21,7 +21,7 @@ function FilterResultList({tickets, filteredTickets, activeSortType}) {
 
     return (
         <Fragment>
-            {ticketsList.length ?
+            {tickets.length ?
                     filteredTickets && filteredTickets.length === 0 ?
                         <p>По вашему запросу ничего не найдено</p> :
 
