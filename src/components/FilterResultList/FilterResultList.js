@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import './tickets.css';
 import {connect} from "react-redux";
 import FilterResultItem from "../FilterResultItem/FilterResultItem";
+import Loader from "../Loader/Loader";
 import {getActiveSortType, getFilteredTickets, getTickets} from "../../reducer/data/selectors";
 import {SORT_TYPE} from "../../const";
 
@@ -20,16 +21,20 @@ function FilterResultList({tickets, filteredTickets, activeSortType}) {
 
     return (
         <Fragment>
-            {filteredTickets && filteredTickets.length === 0 ?
-                <p>По вашему запросу ничего не найдено</p> :
+            {ticketsList.length ?
+                    filteredTickets && filteredTickets.length === 0 ?
+                        <p>По вашему запросу ничего не найдено</p> :
 
-                <ul className="filter__result-list tickets">
-                    {filteredTickets ? ticketsList.map((ticket, index) => (
-                        <FilterResultItem ticket={ticket} key={index}/>
-                    )) : ticketsList.map((ticket, index) => (
-                        <FilterResultItem ticket={ticket} key={index}/>
-                    ))}
-                </ul>
+                        <ul className="filter__result-list tickets">
+                            {filteredTickets ? ticketsList.map((ticket, index) => (
+                                <FilterResultItem ticket={ticket} key={index}/>
+                            )) : ticketsList.map((ticket, index) => (
+                                <FilterResultItem ticket={ticket} key={index}/>
+                            ))}
+                        </ul>
+
+                :
+                <Loader/>
             }
         </Fragment>
     );
