@@ -1,5 +1,6 @@
 import {extend} from "../../utils";
 import {TRANSFER_FILTER_TITLES, SORT_TYPE} from "../../const";
+import {loadMovies} from "../../utils";
 
 const initialState = {
     tickets: [],
@@ -96,8 +97,10 @@ const ActionCreator = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ActionType.LOAD_TICKETS:
+            const tickets = [...state.tickets, ...action.payload];
+
             return extend(state, {
-                tickets: action.payload,
+                tickets: tickets,
             });
         case ActionType.FINISH_LOADING:
             return extend(state, {
@@ -142,16 +145,8 @@ const Operations = {
     loadTickets: () => (dispatch, getState, api) => {
         return api.get(`/search`)
             .then((response) => {
-                api.get(`/tickets?searchId=${response.data.searchId}`)
-                    .then((response) => {
-                        let tickets = response.data.tickets;
-
-                        dispatch(ActionCreator.loadTickets(tickets));
-                        dispatch(ActionCreator.finishLoading());
-                    })
-                    .catch(() => {
-                        dispatch(ActionCreator.catchError());
-                    });
+                const id = response.data.searchId;
+                loadMovies(api, dispatch, id);
             })
             .catch(() => {
                 dispatch(ActionCreator.catchError());
