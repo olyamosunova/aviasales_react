@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/aviasales_react/static/css/main.13a77e60.chunk.css",
+    "main.js": "/aviasales_react/static/js/main.da7c91db.chunk.js",
+    "main.js.map": "/aviasales_react/static/js/main.da7c91db.chunk.js.map",
+    "runtime-main.js": "/aviasales_react/static/js/runtime-main.77d027a0.js",
+    "runtime-main.js.map": "/aviasales_react/static/js/runtime-main.77d027a0.js.map",
+    "static/js/2.32ab6476.chunk.js": "/aviasales_react/static/js/2.32ab6476.chunk.js",
+    "static/js/2.32ab6476.chunk.js.map": "/aviasales_react/static/js/2.32ab6476.chunk.js.map",
+    "index.html": "/aviasales_react/index.html",
+    "static/css/main.13a77e60.chunk.css.map": "/aviasales_react/static/css/main.13a77e60.chunk.css.map",
+    "static/js/2.32ab6476.chunk.js.LICENSE.txt": "/aviasales_react/static/js/2.32ab6476.chunk.js.LICENSE.txt",
+    "static/media/2.d7d45923.svg": "/aviasales_react/static/media/2.d7d45923.svg",
+    "static/media/index.css": "/aviasales_react/static/media/OpenSans-SemiBold.e2426461.woff2",
+    "static/media/logo.8bb77c6b.svg": "/aviasales_react/static/media/logo.8bb77c6b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77d027a0.js",
+    "static/js/2.32ab6476.chunk.js",
+    "static/css/main.13a77e60.chunk.css",
+    "static/js/main.da7c91db.chunk.js"
+  ]
+}
