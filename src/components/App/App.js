@@ -1,10 +1,6 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Main from "../Main/Main";
 import logo from "../../logo.svg";
-import {getId} from "../../reducer/data/selectors";
-import {connect} from "react-redux";
-import {FilterResultList} from "../FilterResultList/FilterResultList";
-import {Operations} from "../../reducer/data/data";
 
 function App() {
     return (

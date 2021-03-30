@@ -2,6 +2,7 @@
   "name": "aviasales_react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://olyamosunova.github.io/aviasales_react",
   "dependencies": {
     "@babel/core": "7.12.3",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.2",
@@ -78,7 +79,8 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -99,6 +101,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.1"
   },
