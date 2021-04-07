@@ -10,7 +10,7 @@ export const formatDuration = (duration) => {
     return `${hours}ч ${minutes}м`;
 };
 
-export const loadMovies = (api, dispatch, id) => {
+export const loadTickets = (api, dispatch, id) => {
     return api.get(`/tickets?searchId=${id}`)
         .then((response) => {
             let tickets = response.data.tickets;
@@ -19,7 +19,7 @@ export const loadMovies = (api, dispatch, id) => {
             dispatch(ActionCreator.finishLoading());
 
             if (!response.data.stop) {
-                loadMovies(api, dispatch, id);
+                loadTickets(api, dispatch, id);
             }
         })
         .catch(() => {

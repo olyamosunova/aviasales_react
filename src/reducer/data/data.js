@@ -1,6 +1,6 @@
 import {extend} from "../../utils";
 import {TRANSFER_FILTER_TITLES, SORT_TYPE} from "../../const";
-import {loadMovies} from "../../utils";
+import {loadTickets} from "../../utils";
 
 const initialState = {
     tickets: [],
@@ -146,7 +146,7 @@ const Operations = {
         return api.get(`/search`)
             .then((response) => {
                 const id = response.data.searchId;
-                loadMovies(api, dispatch, id);
+                loadTickets(api, dispatch, id);
             })
             .catch(() => {
                 dispatch(ActionCreator.catchError());
